@@ -1,0 +1,32 @@
+get  all data
+
+curl --request GET --url \
+    "https://udemy-utils.herokuapp.com/api/v1/events?token=token123"
+
+get id title and body
+curl --request GET --url \
+    "https://udemy-utils.herokuapp.com/api/v1/events/1?token=token123"
+
+create data
+curl --request POST --url \
+    'https://udemy-utils.herokuapp.com/api/v1/events?token=token123' \
+    --header 'Content-Type:application/json' \
+    --data '{
+        "title": "event 11",
+        "body" : "body for event 11"
+    }'
+
+update data
+curl --request PUT --url \
+    'https://udemy-utils.herokuapp.com/api/v1/events/11?token=token123' \
+    --header 'Content-Type:application/json' \
+    --data '{
+        "title": "change title",
+        "body" : "change body"
+    }'
+
+delete data
+
+curl --request DELETE --url \
+    'https://udemy-utils.herokuapp.com/api/v1/events/11?token=token123' \
+    --header 'Content-Type:application/json'
