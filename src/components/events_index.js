@@ -25,7 +25,6 @@ class EventsIndex extends Component {
 		console.log("render");
 		return (
 			<React.Fragment>
-				{/* <div>{console.log(props.events)}</div> */}
 				<table>
 					<thead>
 						<tr>
