@@ -39,7 +39,7 @@ class EventsNew extends Component {
 			<React.Fragment>
 				<form onSubmit={handleSubmit(this.onSubmit)}>
 					<div>
-						<Field
+					    <Field
 							label="Title"
 							name="title"
 							type="text"
@@ -52,7 +52,7 @@ class EventsNew extends Component {
 							name="body"
 							type="text"
 							component={this.renderField}
-						/>
+						/> 
 					</div>
 					<div>
 						<input type="submit" value="Submit" disabled={pristine || submitting} />
