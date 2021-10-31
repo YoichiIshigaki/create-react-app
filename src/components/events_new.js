@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import { postEvent } from "../actions";
 
 class EventsNew extends Component {
-
-    constructor(props) {
-        super(props)
-        this.onSubmit = this.onSubmit.bind(this)
-    }
+	constructor(props) {
+		super(props);
+		this.onSubmit = this.onSubmit.bind(this);
+	}
 	renderField(field) {
 		const {
 			input,
@@ -17,29 +16,29 @@ class EventsNew extends Component {
 			type,
 			meta: { touched, error },
 		} = field;
-        // console.log(field)
+		// console.log(field)
 		return (
-            <div>
-                <input {...input} placeholder={label} type={type} />
-                {touched && error && <span>{error}</span>}
-            </div>
-        );
+			<div>
+				<input {...input} placeholder={label} type={type} />
+				{touched && error && <span>{error}</span>}
+			</div>
+		);
 	}
-    async onSubmit(values) {
-        await this.props.postEvent(values)
-        this.props.history.push("/")
-    }
+	async onSubmit(values) {
+		await this.props.postEvent(values);
+		this.props.history.push("/");
+	}
 
 	render() {
 		console.log("render");
-        const {handleSubmit, pristine,submitting } = this.props
-        // console.log(pristine)
-        console.log(submitting)
+		const { handleSubmit, pristine, submitting, invalid } = this.props;
+		// console.log(pristine)
+		console.log(submitting);
 		return (
 			<React.Fragment>
 				<form onSubmit={handleSubmit(this.onSubmit)}>
 					<div>
-					    <Field
+						<Field
 							label="Title"
 							name="title"
 							type="text"
@@ -52,10 +51,14 @@ class EventsNew extends Component {
 							name="body"
 							type="text"
 							component={this.renderField}
-						/> 
+						/>
 					</div>
 					<div>
-						<input type="submit" value="Submit" disabled={pristine || submitting} />
+						<input
+							type="submit"
+							value="Submit"
+							disabled={pristine || submitting || invalid}
+						/>
 					</div>
 					<Link to="/">Cancel</Link>
 				</form>
@@ -64,15 +67,15 @@ class EventsNew extends Component {
 	}
 }
 
-const mapDispatchToProps = ({ postEvent });
+const mapDispatchToProps = { postEvent };
 
 const validate = (values) => {
 	const errors = {};
 
-    if (!values.title) errors.title = "Enter a title, please"
-    if (!values.body) errors.body = "Enter a body, please"
+	if (!values.title) errors.title = "Enter a title, please";
+	if (!values.body) errors.body = "Enter a body, please";
 
-    return errors;
+	return errors;
 };
 
 export default connect(
